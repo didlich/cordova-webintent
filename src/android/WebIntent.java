@@ -140,7 +140,7 @@ public class WebIntent extends CordovaPlugin {
                     }
                 }
 
-                sendBroadcast(obj.getString("action"), extrasMap);
+                sendBroadcast(obj.getString("type"), obj.getString("action"), extrasMap);
                 callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK));
                 return true;
             }
@@ -197,7 +197,7 @@ public class WebIntent extends CordovaPlugin {
         ((CordovaActivity)this.cordova.getActivity()).startActivity(i);
     }
 
-    void sendBroadcast(String action, Map<String, String> extras) {
+    void sendBroadcast(String type, String action, Map<String, String> extras) {
         Intent intent = new Intent();
         intent.setAction(action);
         for (Map.Entry<String, String> entry : extras.entrySet()) {
